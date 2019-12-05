@@ -10,6 +10,8 @@ description: |
     - markdown-include extention @cmacmackin
     - factsheet extention @inuits
 
+  Upstream developer: https://github.com/mkdocs/mkdocs
+
 grade: stable
 confinement: strict
 
