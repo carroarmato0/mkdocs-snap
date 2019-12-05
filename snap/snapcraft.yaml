@@ -1,0 +1,46 @@
+name: mkdocs-carroarmato0
+base: core18
+version: '1.0.4+1'
+summary: Project documentation with Markdown
+description: |
+  Project documentation with Markdown.
+
+  This package container the base of mkdocs together with a number of addons:
+    - mkdocs-material theme @squidfunk
+    - markdown-include extention @cmacmackin
+    - factsheet extention @inuits
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: [amd64]
+
+apps:
+  mkdocs:
+    command: mkdocs
+    plugs:
+      - home
+      - network
+      - network-bind
+    environment: {
+      LANG: C.UTF-8,
+      LC_ALL: C.UTF-8
+    }
+
+parts:
+  mkdocs:
+    plugin: python
+    source: https://github.com/mkdocs/mkdocs/archive/1.0.4.tar.gz
+
+  mkdocs-material:
+    plugin: python
+    source: https://github.com/squidfunk/mkdocs-material/archive/4.5.1.tar.gz
+
+  mkdocs-markdown-include:
+    plugin: python
+    source: https://github.com/cmacmackin/markdown-include/archive/v0.5.1.tar.gz
+
+  mkdocs-factsheet:
+    plugin: python
+    source: https://github.com/inuits/mkdocs-factsheet.git
