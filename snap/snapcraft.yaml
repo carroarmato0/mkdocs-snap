@@ -13,16 +13,6 @@ description: |
 
   Upstream developer: https://github.com/mkdocs/mkdocs
 
-  Usage:
-    $ mkdocs new my-project
-    $ cd my-project
-    $ mkdocs serve
-    INFO    -  Building documentation...
-    INFO    -  Cleaning site directory
-    [I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000
-    [I 160402 15:50:43 handlers:58] Start watching changes
-    [I 160402 15:50:43 handlers:60] Start detecting changes
-
 grade: stable
 confinement: strict
 
