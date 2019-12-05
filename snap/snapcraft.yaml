@@ -3,7 +3,8 @@ base: core18
 version: '1.0.4+1'
 summary: Project documentation with Markdown
 description: |
-  Project documentation with Markdown.
+  MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. 
+  Documentation source files are written in Markdown, and configured with a single YAML configuration file.
 
   This package container the base of mkdocs together with a number of addons:
     - mkdocs-material theme @squidfunk
@@ -11,6 +12,16 @@ description: |
     - factsheet extention @inuits
 
   Upstream developer: https://github.com/mkdocs/mkdocs
+
+  Usage:
+    $ mkdocs new my-project
+    $ cd my-project
+    $ mkdocs serve
+    INFO    -  Building documentation...
+    INFO    -  Cleaning site directory
+    [I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000
+    [I 160402 15:50:43 handlers:58] Start watching changes
+    [I 160402 15:50:43 handlers:60] Start detecting changes
 
 grade: stable
 confinement: strict
