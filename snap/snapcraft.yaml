@@ -1,23 +1,33 @@
 name: mkdocs-carroarmato0
 base: core18
-version: '1.0.4+1'
+version: '1.0.4'
 summary: Project documentation with Markdown
 description: |
   MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. 
   Documentation source files are written in Markdown, and configured with a single YAML configuration file.
 
-  This package container the base of mkdocs together with a number of addons:
-    - mkdocs-material theme @squidfunk
-    - markdown-include extention @cmacmackin
-    - factsheet extention @inuits
+  This package contains the base of mkdocs together with a number of addons:
+
+  - mkdocs-material theme @squidfunk
+  - markdown-include extention @cmacmackin
+  - factsheet extention @inuits
+
+  If you want to install additional addons, you can do so using the command `mkdocs-carroarmato0.pip`. This command installs the addons inside of the sandbox of this package so that mkdocs can find them. Example:
+
+  > `mkdocs-carroarmato0.pip install mkdocs-monorepo-plugin`
 
   Upstream developer: https://github.com/mkdocs/mkdocs
+license: BSD-2-Clause
 
 grade: stable
 confinement: strict
 
 architectures:
   - build-on: [amd64]
+
+environment:
+  # pip will install binaries in $SNAP_USER_DATA/.local/bin
+  PATH: $PATH:$SNAP_USER_DATA/.local/bin
 
 apps:
   mkdocs:
@@ -26,24 +36,27 @@ apps:
       - home
       - network
       - network-bind
-    environment: {
+    environment:
       LANG: C.UTF-8,
       LC_ALL: C.UTF-8
-    }
+  pip:
+    command: python3 -m pip
+    environment:
+      PIP_USER: 1
+    plugs:
+      - network
 
 parts:
+  pip:
+    source: ""
+    plugin: python
+    python-packages:
+      - pip
+
   mkdocs:
     plugin: python
-    source: https://github.com/mkdocs/mkdocs/archive/1.0.4.tar.gz
-
-  mkdocs-material:
-    plugin: python
-    source: https://github.com/squidfunk/mkdocs-material/archive/4.5.1.tar.gz
-
-  mkdocs-markdown-include:
-    plugin: python
-    source: https://github.com/cmacmackin/markdown-include/archive/v0.5.1.tar.gz
-
-  mkdocs-factsheet:
-    plugin: python
-    source: https://github.com/inuits/mkdocs-factsheet.git
+    source: https://github.com/mkdocs/mkdocs/archive/$SNAPCRAFT_PROJECT_VERSION.tar.gz
+    python-packages:
+      - https://github.com/squidfunk/mkdocs-material/archive/4.5.1.tar.gz
+      - https://github.com/cmacmackin/markdown-include/archive/v0.5.1.tar.gz
+      - git+https://github.com/inuits/mkdocs-factsheet.git
